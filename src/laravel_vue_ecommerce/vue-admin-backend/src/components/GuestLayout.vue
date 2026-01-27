@@ -4,13 +4,13 @@
     >
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
             <h2
-                class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white"
+                class="text-center text-2xl/9 font-bold tracking-tight text-gray-900"
             >
                 {{ title }}
             </h2>
         </div>
 
-        <form class="space-y-6" action="#" method="POST">
+        <form class="space-y-6 py-12" action="#" method="POST" style="border:">
             <slot></slot>
         </form>
     </div>
