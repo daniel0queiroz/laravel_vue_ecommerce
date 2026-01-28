@@ -18,6 +18,7 @@
 import { ref, onMounted, onUnmounted } from "vue";
 import Sidebar from "./Sidebar.vue";
 import Navbar from "./Navbar.vue";
+import store from "../store";
 
 const { title } = defineProps({
     title: String,
@@ -29,18 +30,19 @@ function toggleSidebar() {
     sidebarOpened.value = !sidebarOpened.value;
 }
 
+function updateSidebarState() {
+    sidebarOpened.value = window.outerWidth > 768;
+}
+
 onMounted(() => {
-    handleSidebarOpened();
-    window.addEventListener("resize", handleSidebarOpened);
+    store.dispatch("getUser");
+    updateSidebarState();
+    window.addEventListener("resize", updateSidebarState);
 });
 
 onUnmounted(() => {
-    window.removeEventListener("resize", handleSidebarOpened);
+    window.removeEventListener("resize", updateSidebarState);
 });
-
-function handleSidebarOpened() {
-    sidebarOpened.value = window.outerWidth > 768;
-}
 </script>
 
 <style scoped></style>
