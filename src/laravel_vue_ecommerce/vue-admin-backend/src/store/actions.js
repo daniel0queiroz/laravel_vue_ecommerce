@@ -2,9 +2,9 @@ import axiosClient from "../axios";
 
 export function getUser({ commit }) {
     return axiosClient.get("/user").then((response) => {
+        // Only commit the user object, not the full Axios response
         commit("setUser", response.data);
-
-        return response;
+        return response.data;
     });
 }
 
